@@ -35,7 +35,7 @@ function Recording() {
       };
       setMediaRecorder(newMediaRecorder);
       
-      await axios.post('https://recording-test.onrender.com/recording/start', {
+      await axios.post('http://localhost:4000/recording/start', {
         videoPermission: true,
         audioPermission: true
       });
