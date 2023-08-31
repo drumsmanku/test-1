@@ -1,0 +1,15 @@
+.container{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.navbar{
+  height: 10%;
+  width: 100%;
+  background-color: bisque;
+}
+.bottomBody{
+  height: 90%;
+  width: 80%;
+}

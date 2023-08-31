@@ -1,0 +1,27 @@
+.container{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.navbar{
+  height: 10%;
+  width: 100%;
+  background-color: bisque;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bottomBody{
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+.button{
+  background: none;
+  border-radius: 0.3rem;
+  height: 2rem;
+  width: 4rem;
+  font-size: medium;
+  cursor: pointer;
+}

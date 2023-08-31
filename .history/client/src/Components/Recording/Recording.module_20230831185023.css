@@ -1,0 +1,10 @@
+.container{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+}
+.navbar{
+  height: 10%;
+  width: 100%;
+  background-color: bisque;
+}
