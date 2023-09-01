@@ -35,7 +35,7 @@ router.post('/recording/stop', async(req, res) => {
 router.post('/recording/savewebcam', async (req, res) => {
   let recording = await Recording.findById(req.body.recordingId);
   if (recording) {
-    recording.webcamVideoUrl = req.body.videoUrl;
+    recording.videoUrl = req.body.videoUrl;
     await recording.save();
     res.send(recording);
   } else {
@@ -45,28 +45,10 @@ router.post('/recording/savewebcam', async (req, res) => {
 router.post('/recording/savescreen', async (req, res) => {
   let recording = await Recording.findById(req.body.recordingId);
   if (recording) {
-    recording.screenVideoUrl = req.body.videoUrl;
+    recording.videoUrl = req.body.videoUrl;
     await recording.save();
     res.send(recording);
   } else {
-    res.send({ error: 'no recording found' });
-  }
-});
-
-router.post('/recording/webcamdata', async(req, res)=>{
-  let webcamRecording=await Recording.findById(req.body.recordingId);
-  if(webcamRecording){
-    res.send(webcamRecording);
-  }else {
-    res.send({ error: 'no recording found' });
-  }
-});
-
-router.post('/recording/screendata', async(req, res)=>{
-  let screenRecording=await Recording.findById(req.body.recordingId);
-  if(screenRecording){
-    res.send(screenRecording);
-  }else {
     res.send({ error: 'no recording found' });
   }
 });

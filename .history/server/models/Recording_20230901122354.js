@@ -6,9 +6,7 @@ const RecordingSchema = new Schema({
   startedAt: { type: Date, default: Date.now() },
   videoPermission: { type: Boolean, default: false },
   audioPermission: { type: Boolean, default: false },
-  screenPermission: { type: Boolean, default: false },
-  webcamVideoUrl: { type: String } ,
-  screenVideoUrl: { type: String } 
+  screenPermission: { type: Boolean, default: false }  
 });
 
-module.exports = mongoose.model('Recording', RecordingSchema);
+module.exports=mongoose.model('Recording', RecordingSchema);

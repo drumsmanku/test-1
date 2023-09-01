@@ -16,7 +16,7 @@
 }
 .bottomBody{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
   align-items: center;
 }
@@ -28,13 +28,4 @@
   font-size: medium;
   cursor: pointer;
   margin-right: 2rem;
-}
-
-.webButtons{
-  display: flex;
-  align-items: center;
-}
-.screenButtons{
-  display: flex;
-  align-items: center;
 }

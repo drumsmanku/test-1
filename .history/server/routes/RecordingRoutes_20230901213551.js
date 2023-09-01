@@ -53,23 +53,5 @@ router.post('/recording/savescreen', async (req, res) => {
   }
 });
 
-router.post('/recording/webcamdata', async(req, res)=>{
-  let webcamRecording=await Recording.findById(req.body.recordingId);
-  if(webcamRecording){
-    res.send(webcamRecording);
-  }else {
-    res.send({ error: 'no recording found' });
-  }
-});
-
-router.post('/recording/screendata', async(req, res)=>{
-  let screenRecording=await Recording.findById(req.body.recordingId);
-  if(screenRecording){
-    res.send(screenRecording);
-  }else {
-    res.send({ error: 'no recording found' });
-  }
-});
-
 
 module.exports=router;

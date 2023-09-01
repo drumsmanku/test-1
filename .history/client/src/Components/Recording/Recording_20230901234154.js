@@ -26,6 +26,9 @@ function Recording() {
   const [webcamRecordingId, setWebcamRecordingId] = useState(null); 
   const [screenRecordingId, setScreenRecordingId] = useState(null);
 
+  const [webcamVideoUrl, setWebcamVideoUrl] = useState([]);
+  const [screenVideoUrl, setScreenVideoUrl] = useState([]);
+  
   const [webcamDownloadURL, setWebcamDownloadURL] = useState("");
   const [screenDownloadURL, setScreenDownloadURL] = useState("");
   
@@ -111,6 +114,9 @@ function Recording() {
         const urlweb = await uploadToCloud(blobWebcam, webcamRecordingId, sampleVar);
          setWebcamDownloadURL(urlweb);
 
+        const response = await axios.post('http://localhost:4000/recording/webcamdata', {recordingId: webcamRecordingId});
+        setWebcamVideoUrl(response.data.webcamVideoUrl);
+
 
         const videoElementWebcam = document.getElementById('videoPlayback');
         videoElementWebcam.src = url;
@@ -132,6 +138,10 @@ const stopRecordingScreen = async () => {
 
     const urlscreen = await uploadToCloud(blobScreen, screenRecordingId,sampleVar);
     setScreenDownloadURL(urlscreen);
+
+    const response = await axios.post('http://localhost:4000/recording/screendata', {recordingId: screenRecordingId});
+    setScreenVideoUrl(response.data.screenVideoUrl);
+
 
     const videoElementScreen = document.getElementById('screenPlayback');
     videoElementScreen.src = url;

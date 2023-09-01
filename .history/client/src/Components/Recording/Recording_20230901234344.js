@@ -26,6 +26,9 @@ function Recording() {
   const [webcamRecordingId, setWebcamRecordingId] = useState(null); 
   const [screenRecordingId, setScreenRecordingId] = useState(null);
 
+  const [webcamVideoUrl, setWebcamVideoUrl] = useState([]);
+  const [screenVideoUrl, setScreenVideoUrl] = useState([]);
+  
   const [webcamDownloadURL, setWebcamDownloadURL] = useState("");
   const [screenDownloadURL, setScreenDownloadURL] = useState("");
   

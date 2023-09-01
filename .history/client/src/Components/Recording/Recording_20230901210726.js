@@ -25,9 +25,7 @@ function Recording() {
 
   const [webcamRecordingId, setWebcamRecordingId] = useState(null); 
   const [screenRecordingId, setScreenRecordingId] = useState(null);
-
-  const [webcamDownloadURL, setWebcamDownloadURL] = useState("");
-  const [screenDownloadURL, setScreenDownloadURL] = useState("");
+  
   
   const webcamChunksRef = useRef([]);
   const screenChunksRef = useRef([]);
@@ -96,7 +94,6 @@ function Recording() {
   
 
   const stopRecordingWebcam = async () => {
-    const sampleVar=0;
     if (mediaRecorderWebcam) {
         mediaRecorderWebcam.stop();
         mediaRecorderWebcam.stream.getTracks().forEach(track => track.stop());
@@ -104,14 +101,11 @@ function Recording() {
         clearInterval(intervalWebcamId.current); 
         setProgressWebcam(0);
 
-        await axios.post('http://localhost:4000/recording/stop', { recordingId: webcamRecordingId });
+        await axios.post('http://localhost:4000/recording/stop');
 
         const blobWebcam = new Blob(webcamChunksRef.current, { type: 'video/webm' });
         const url = URL.createObjectURL(blobWebcam);
-        const urlweb = await uploadToCloud(blobWebcam, webcamRecordingId, sampleVar);
-         setWebcamDownloadURL(urlweb);
-
-
+        await uploadToCloud(blobWebcam, webcamRecordingId); 
         const videoElementWebcam = document.getElementById('videoPlayback');
         videoElementWebcam.src = url;
         webcamChunksRef.current = []; 
@@ -120,19 +114,15 @@ function Recording() {
 };
 
 const stopRecordingScreen = async () => {
-  const sampleVar=1;
   if (mediaRecorderScreen) {
     mediaRecorderScreen.stop();
     mediaRecorderScreen.stream.getTracks().forEach(track => track.stop());
     clearInterval(intervalScreenId.current);
     setProgressScreen(0);
-    await axios.post('http://localhost:4000/recording/stop', { recordingId: screenRecordingId });
+    await axios.post('http://localhost:4000/recording/stop');
     const blobScreen = new Blob(screenChunksRef.current, { type: 'video/webm' });
     const url = URL.createObjectURL(blobScreen);
-
-    const urlscreen = await uploadToCloud(blobScreen, screenRecordingId,sampleVar);
-    setScreenDownloadURL(urlscreen);
-
+    await uploadToCloud(blobScreen, screenRecordingId);
     const videoElementScreen = document.getElementById('screenPlayback');
     videoElementScreen.src = url;
     screenChunksRef.current = [];
@@ -191,16 +181,10 @@ const stopRecordingScreen = async () => {
         <span style={{textAlign:'center'}}>
           <h2 style={{marginTop:'0'}}>Webcam Recording</h2>
           <video height={500} width={700} id="videoPlayback" controls autoplay></video>
-          {webcamDownloadURL &&
-            <a href={webcamDownloadURL} target="_blank" rel="noopener noreferrer">{webcamDownloadURL}</a>
-          }
         </span>
         <span style={{textAlign:'center'}}>
           <h2 style={{marginTop:'0'}}>Screen Recording</h2>
           <video height={500} width={700} id="screenPlayback" controls autoplay></video>
-          {screenDownloadURL &&
-            <a href={screenDownloadURL} target="_blank" rel="noopener noreferrer">{screenDownloadURL}</a>
-          }
         </span>
       </div>
       
